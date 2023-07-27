@@ -1,8 +1,8 @@
 # 7/27
 
-## 一.MYSQL约束
+# 一.MYSQL约束
 
-### 1.主键约束(PK)
+## 1.主键约束(PK)
 
 主键约束最显著的特征是主键列中的值是不允许重复(唯一)的，通过主键约束可强制表 的实体完整性。当创建或更改表时可通过定义 primary key约束来创建主键。
 
@@ -22,7 +22,7 @@ DESC table_name;
 
 
 
-已有表中添加主键
+### 已有表中添加主键
 
 ```sql
 alter table tab_name add constraint pk_name primary key (deptno);
@@ -60,7 +60,7 @@ ALTER TABLE dept ADD CONSTRAINT pk_name PRIMARY KEY(deptno);
 
 ![image-20230727133019259](https://cdn.jsdelivr.net/gh/vegetabledog5058/photo/md/202307271330324.png)
 
-自增长列（标识列）
+## 自增长列（标识列）
 
 自增长列是 int 类型的，其值是 int 类型的，其值是由数据库自动维护的，是永远都不会 重复的，因此自增长是最适合作为主键列的。在创建表时，通过 auto_increment 关键字 来标识自增长列;
 
@@ -131,7 +131,7 @@ INDEX INDEX unique_name on table_name;
 
 ![image-20230727212212126](https://cdn.jsdelivr.net/gh/vegetabledog5058/photo/md/202307272122163.png)
 
-默认约束(DF)与非空约束(NOT NULL)
+## 默认约束(DF)与非空约束(NOT NULL)
 
 默认约束:为列中的值设置默认值，default ....,如果已经定了值，默认值就无效了
 
@@ -168,7 +168,9 @@ ALTER wh SET DEFAULT new_default_value;
 - 默认约束能和主键约束可以同时存在
 - 默认约束不能和 AUTO_INCREMENT 同时使用(用时刻函数时不冲突)
 
-例如下面是一个UQ与DF与非空的表
+### 例:
+
+下面是一个UQ与DF与非空的表
 
 ```sql
 //建立表格
@@ -185,7 +187,7 @@ dfun int unique default 2   //唯一约束与默认约束
 
 ![image-20230727201414731](https://cdn.jsdelivr.net/gh/vegetabledog5058/photo/md/202307272014784.png)
 
-插入数据
+### 插入数据
 
 ![image-20230727202415155](https://cdn.jsdelivr.net/gh/vegetabledog5058/photo/md/202307272024206.png)
 
@@ -201,7 +203,7 @@ dfun int unique default 2   //唯一约束与默认约束
 
 
 
-删除约束
+### 删除约束
 
 ```sql
 //去除默认值(null)
@@ -214,7 +216,7 @@ ALTER TABLE tb_name ALTER col_name DROP DEFAULT; -- 删除了默认值，新增�
 
 
 
-外键约束
+## 外键约束
 
 A表中列的值来自于另外一张表B的主键或唯一键的列称为 外键FK，将被引用值得表称为 主表或父表，将引用值得表称为从表或子表。 例如: emp 表中有 deptno 列，值来自于 de pt 表的 主键 deptno 。 dept 是主表， emp 是从表。
 
