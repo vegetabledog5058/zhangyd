@@ -1,6 +1,4 @@
-# 7/27
-
-# 一.MYSQL约束
+# MYSQL约束
 
 ## 1.主键约束(PK)
 
@@ -260,3 +258,39 @@ alter table 表名称 drop foreign key 设置外键时的名称
 
 - on delete CASCADE/ on update CASCADE 级联删除 / 级联更新 
 - ON DELETE SET NULL / ON UPDATE SET NULL
+
+### 例题
+
+![image-20230727235943501](https://cdn.jsdelivr.net/gh/vegetabledog5058/photo/md/202307272359540.png)
+
+![image-20230728000002617](https://cdn.jsdelivr.net/gh/vegetabledog5058/photo/md/202307280000668.png)
+
+#### 问题1:
+
+employee表的 dept_id 列引用dept表的 dept_id 列
+
+```sql
+alter table employee add constraint foreign key dept_fpk (dept_id) references dept(dept_id);
+```
+
+用show create table查看表结构:
+
+![image-20230728000303715](https://cdn.jsdelivr.net/gh/vegetabledog5058/photo/md/202307280003767.png)
+
+#### 问题2:
+
+删除测试部门及其员工
+
+因为完整性原因需要先解除外键后进行级联删除故:
+
+```sql
+-- 先解除外键
+ alter table employee drop FOREIGN KEY employee_ibfk_1;
+ -- 然后将dept和employee表进行级联删除
+ ALTER TABLE employee ADD constraint 
+ FOREIGN KEY employee(dept_id) REFERENCES dept(dept_id) on delete CASCADE;
+ -- 删除
+ DELETE FROM dept WHERE dept_id=2;
+```
+
+![image-20230728000919797](https://cdn.jsdelivr.net/gh/vegetabledog5058/photo/md/202307280009853.png)
