@@ -82,6 +82,8 @@
 
 ```cmd
 -encoding UTF-8 
+-Dfile.encoding UTF-8//open版本需要
+
 ```
 
 ![image-20230731184218411](https://cdn.jsdelivr.net/gh/vegetabledog5058/photo/md/202307311842461.png)
