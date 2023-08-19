@@ -1,4 +1,4 @@
-# JAVA面向对象4
+# JAVA面向对象4(多态)
 
 ## 一.静态成员和实例成员的区别
 
@@ -311,7 +311,7 @@ class Cat extends Animal {
 
 public class Main {
     public static void main(String[] args) {
-        Animal animal = new Dog();
+        Animal animal = new Dog(); //实例化dog
 
     if (animal.getClass() == Dog.class) {
        System.out.println("The animal is a Dog");
