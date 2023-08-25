@@ -208,6 +208,31 @@ public class Sub extends Sup {
 4. **一致性（Consistency）：** 对于任何非空对象 `a` 和 `b`，多次调用 `a.equals(b)` 应该始终返回相同的结果，前提是对象的状态没有改变。
 5. **非空性（Non-nullity）：** 对于任何非空对象 `a`，`a.equals(null)` 应该返回 `false`。
 
+```java
+public boolean equals(Object obj) {
+       
+            if (obj == null) {
+                return false;
+            }
+            if (this == obj) {
+                return true;
+            }
+            // if(obj.getClass() == this.getClass()){}
+            if (obj instanceof Override_equals over) {
+                if (over.name.equals(this.name)) {
+                    if (over.age == this.age) {
+                        return true;
+                    }
+                }
+            }
+        
+        return false;
+
+    }
+```
+
+
+
 ### 4.tostring方法重写准则
 
 1. **提供有意义的信息：** `toString()` 方法的返回值应该提供有关对象状态的信息，以便开发人员能够理解对象的内容。避免返回无用的信息。
@@ -277,7 +302,28 @@ System.out.println(student); // 输出：Student{name='Alice', age=20}
 
 > 用于返回对象的哈希码（散列码）。哈希码是一个整数，通常用于数据结构如哈希表中的查找和存储操作。
 
+> 注:基本数据类型的hashCode值是本身
+
+> 一般会选取31,37,47等质数因子
+
 > 如果两个对象通过 `equals()` 方法比较是相等的，那么它们的 `hashCode()` 方法应该返回相同的哈希码值。相反如果哈希码值相同,两者不一定不一定相同
+
+> 重写hashCode的原因:
+
+> 重写 `hashCode()` 方法是为了确保对象在哈希表等数据结构中能够被正确找到，同时要保证好的分布性能，以提高数据结构的效率。在自定义类中，如果你重写了 `equals()` 方法，就应该同时重写 `hashCode()` 方法，以保持这两者之间的一致性。
+
+```java
+ @Override
+    public int hashCode(){
+        int result = 1;
+        result = result * 31 + name.hashCode();
+        result = result * 31 + age;
+
+        return result;
+    }
+```
+
+
 
 ## 3.super关键字
 
